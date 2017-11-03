@@ -1,0 +1,30 @@
+<div class="users">
+	<div class="card">
+	  <div class="card-divider">
+	    All Users
+	    <a href="/users/logout" class="button success">Logout</a>
+	  </div>
+	  <div class="card-section">
+	    <table>
+		  <thead>
+		    <tr>
+		      <th width="200">User ID</th>
+		      <th>User Email</th>
+		      <th>Password</th>
+		      <th width="150">Remove User</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{{#each users}}
+			  	<tr>
+			      <td>{{id}}</td>
+			      <td>{{email}}</td>
+			      <td>{{password}}</td>
+			      <td><a type="button" class="alert button" href="/users/del/{{id}}">Delete</button></a>
+			    </tr>
+		  	{{/each}}
+		  </tbody>
+		</table>
+	  </div>
+	</div>
+</div>

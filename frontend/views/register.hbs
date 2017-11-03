@@ -1,0 +1,25 @@
+{{#if err}}
+<div class="grid-container fluid">
+  <div class="grid-x grid-margin-x">
+    <div class="cell small-12 large-6" style="margin:auto;">
+      <div class="callout alert" data-closable>
+        <h5>Register error occured. Try again.</h5>
+        <p>{{err}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+<section class="login-form-wrap">
+  <h1>Supertech Register</h1>
+  <form class="login-form" action="/register" method="post">
+    <label>
+      <input type="email" name="username" required placeholder="Email">
+    </label>
+    <label>
+      <input type="password" name="password" required placeholder="Password">
+    </label>
+    <input type="submit" value="Register">
+  </form>
+  <h5><a href="/login">Login</a></h5>
+</section>

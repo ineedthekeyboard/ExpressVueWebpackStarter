@@ -1,0 +1,45 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400italic,700italic,400,700);
+@import '~foundation-sites/dist/css/foundation';
+@import 'stylesheets/login';
+@import 'stylesheets/users';
+
+* {
+	box-sizing: border-box; 
+}
+
+html {
+  background: #E2E2E2;
+}
+
+body {
+	background: #E2E2E2;
+	margin:0;
+	padding:0; 
+	font-family: 'Lato', sans-serif;
+}
+.home-wrapper {
+	background: radial-gradient(ellipse at center, #11527c 0%, #0c3d5d 100%);
+	border:1px solid #2d416d;
+	box-shadow: 0 1px #5670A4 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	width: 360px;
+	height: 380px;
+	margin: 60px auto;
+	padding: 50px 30px 0 30px;
+	text-align: center;
+	.button-group {
+		margin:25px auto;
+	}
+	h1 {
+		margin: 0 0 50px 0;
+		padding: 0;  
+		font-size: 26px;
+		color: #fff;
+	}
+	h5 {
+	    display: flex;
+    	flex-direction: column;
+		margin-top: 40px;
+		font-size: 20px;
+	}
+}
