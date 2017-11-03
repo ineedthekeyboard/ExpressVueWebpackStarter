@@ -4,11 +4,16 @@
 		width: 90vh;
 		margin: auto;
 		.card-divider {
-			background: radial-gradient(ellipse at center, #11527c 0%, #0c3d5d 100%);
+			background: radial-gradient(ellipse at center, #49854D 0%, #0C5D12 100%);
 			color: white;
 			display: flex;
 		    justify-content: space-between;
 		    align-items: center;
 		}
+	}
+	.pass {
+	    max-width: 200px;
+	    text-overflow: ellipsis;
+    	overflow: hidden;
 	}
 }

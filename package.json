@@ -1,15 +1,19 @@
 {
-  "name": "ExpressAuthStarter",
+  "name": "ExpressPassportStarter",
   "version": "0.5.0",
   "private": true,
   "scripts": {
-    "postinstall": "webpack -p --config webpack.prod.config.js --progress",
+    "postinstall": "npm run buildClientProd",
     "buildClientProd": "npm run cleanClient && webpack -p --config webpack.prod.config.js --progress",
     "buildClientDev": "npm run cleanClient && webpack --config webpack.dev.config.js",
     "cleanClient": "rimraf public/*",
-    "startDev": "npm run buildClientDev && node server.js",
+    "startDev": "npm run buildClientDev && node --inspect server.js",
     "startProd": "npm run buildClientProd && node server.js",
-    "serverOnly": "node server.js"
+    "serverOnly": "node server.js",
+    "start": "npm run serverOnly"
+  },
+  "engines": {
+    "node": ">=8.1.4"
   },
   "dependencies": {
     "base64url": "^2.0.0",
@@ -21,7 +25,6 @@
     "express": "~4.14.0",
     "express-session": "^1.15.6",
     "extract-text-webpack-plugin": "^3.0.0",
-    "foundation-sites": "^6.4.4-rc1",
     "hbs": "~4.0.1",
     "jquery": "^3.2.1",
     "morgan": "~1.7.0",

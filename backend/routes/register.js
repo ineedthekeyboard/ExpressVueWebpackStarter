@@ -5,7 +5,7 @@ var router = express.Router();
 var passport = require('passport');
 var flash = require('connect-flash');
 var users = require('../localDB')['users'];
-
+var authentication = require('../authentication');
 router.get('/', function(req, res, next) {
 	var errorMessage = null,
 		flashMessage = req.flash('error')[0];
@@ -15,10 +15,11 @@ router.get('/', function(req, res, next) {
   res.render('register', errorMessage);
 });
 router.post('/',
-	function(req, res, next) {
+	async function(req, res, next) {
 		var username = req.body.username,
 			password = req.body.password,
-			randomId, user, userExists = false;
+			randomId, user, userExists = false,
+			saltHash;
 
 		//Check if account exists
 		userExists = (users.filter(function(user){
@@ -30,11 +31,14 @@ router.post('/',
 		} else {
 			//Add User to *DB*
 			randomId = base64url(crypto.randomBytes(8));
+			saltHash = await authentication.generateSecureHash(password);
 			user = {
 				id: randomId,
 				email: username,
-				password: password
+				password: saltHash.hash,
+				salt: saltHash.salt
 			};
+			debugger;
 			users.push(user);
 			req.login(user, function(err) {
 				if (err) { return next(err); }

@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400italic,700italic,400,700);
-@import '~foundation-sites/dist/css/foundation';
+@import url(https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css);
 @import 'stylesheets/login';
 @import 'stylesheets/users';
 
@@ -8,19 +8,19 @@
 }
 
 html {
-  background: #E2E2E2;
+  background: #031705;
 }
 
 body {
-	background: #E2E2E2;
+	background: #031705;
 	margin:0;
 	padding:0; 
 	font-family: 'Lato', sans-serif;
 }
 .home-wrapper {
-	background: radial-gradient(ellipse at center, #11527c 0%, #0c3d5d 100%);
-	border:1px solid #2d416d;
-	box-shadow: 0 1px #5670A4 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
+	background: radial-gradient(ellipse at center, #49854D 0%, #0C5D12 100%);
+	border:1px solid #49854D;
+	box-shadow: 0 1px #49854D inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
 	width: 360px;
 	height: 380px;

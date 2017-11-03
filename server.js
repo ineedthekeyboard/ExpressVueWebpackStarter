@@ -11,11 +11,11 @@ var http = require('http');
 var throng = require('throng');
 var WORKERS = process.env.WEB_CONCURRENCY || 1;
 
-// throng({
-//   workers: WORKERS,
-//   lifetime: Infinity
-// }, startServer);
-startServer();
+throng({
+  workers: WORKERS,
+  lifetime: Infinity
+}, startServer);
+
 function startServer() {
   /**
    * Get port from environment and store in Express.
@@ -34,6 +34,7 @@ function startServer() {
    */
 
   server.listen(port);
+  console.log('Server started on:', port);
   server.on('error', onError);
   server.on('listening', onListening);
 
