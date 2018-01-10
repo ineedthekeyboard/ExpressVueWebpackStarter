@@ -1,16 +1,17 @@
 {
-  "name": "ExpressPassportStarter",
+  "name": "ExpressVueStarter",
   "version": "0.5.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm run buildClientProd",
+    "postinstall": "npm run cleanWebpack && npm run buildClientProd",
     "buildClientProd": "npm run cleanClient && webpack -p --config webpack.prod.config.js --progress",
-    "buildClientDev": "npm run cleanClient && webpack --config webpack.dev.config.js",
+    "buildClientDev": "npm run cleanClient && webpack",
+    "cleanWebpack": "rimraf node_modules/webpack/node_modules/uglifyjs-webpack-plugin",
     "cleanClient": "rimraf public/*",
     "startDev": "npm run buildClientDev && node --inspect server.js",
     "startProd": "npm run buildClientProd && node server.js",
     "serverOnly": "node server.js",
-    "start": "npm run serverOnly"
+    "uiOnly": "webpack -w"
   },
   "engines": {
     "node": ">=8.1.4"
@@ -24,11 +25,7 @@
     "debug": "~2.2.0",
     "express": "~4.14.0",
     "express-session": "^1.15.6",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "hbs": "~4.0.1",
-    "jquery": "^3.2.1",
     "morgan": "~1.7.0",
-    "node-sass-middleware": "0.9.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0",
@@ -37,22 +34,23 @@
   "devDependencies": {
     "ajv": "^5.2.2",
     "autoprefixer": "^7.1.2",
+    "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-runtime": "^6.25.0",
     "css-loader": "^0.28.4",
     "es6-promise": "^4.1.1",
     "file-loader": "^0.11.2",
-    "node-sass": "^4.5.3",
-    "nodemon": "^1.11.0",
-    "postcss": "^6.0.7",
-    "postcss-loader": "^2.0.6",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
-    "stylelint": "^8.0.0",
-    "webpack": "^3.3.0",
-    "webpack-dev-middleware": "^1.11.0",
-    "webpack-hot-middleware": "^2.18.2"
+    "html-webpack-plugin": "^2.30.1",
+    "uglify-es": "^3.3.5",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "vue": "^2.4.2",
+    "vue-axios": "^2.0.2",
+    "vue-loader": "^13.0.2",
+    "vue-router": "^2.7.0",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.4.1"
   }
 }

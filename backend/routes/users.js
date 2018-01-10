@@ -12,13 +12,6 @@ var isAuthenticated = function (req, res, next) {
   }
 }
 
-/* GET users listing. */
-router.get('/',
-	isAuthenticated,
-	function(req, res, next) {
- 		res.render('users', {users: users});
-	});
-
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');

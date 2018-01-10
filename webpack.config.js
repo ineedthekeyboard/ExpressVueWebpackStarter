@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var DIST_DIR = path.join(__dirname, 'public'),
     DEV_DIR = path.join(__dirname, 'frontend');
@@ -15,21 +15,18 @@ module.exports = {
     },
     plugins: [
         new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-        new ExtractTextPlugin({
-            filename: 'bundle.css',
-            allChunks: true
-        })    
+        new HtmlWebpackPlugin({
+            template: path.join(DEV_DIR, 'index.html')
+        })
     ],
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.js'
+        }
+    },
     module: {
-        rules: [
-            {
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    //resolve-url-loader may be chained before sass-loader if necessary
-                    use: ['css-loader', 'sass-loader']
-                })
-            },
+        // Special compilation rules
+        loaders: [
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -39,22 +36,21 @@ module.exports = {
                 }
             },
             {
+                // Ask webpack to check: If this file ends with .vue, then apply some transforms
+                test: /\.vue$/,
+                // don't transform node_modules folder (which don't need to be compiled)
+                exclude: /(node_modules|bower_components)/,
+                // Transform it with vue
+                use: {
+                    loader: 'vue-loader'
+                }
+            },
+            {
                 test: /\.(png|svg|jpg|gif\ttf|eot)$/,
                 use: [
                     'file-loader?name=[path][name].[ext]'
                 ]
             }
-        ],
-        loaders: [
-            
-            
         ]
-    },
-    stats: {
-        // Colored output
-        colors: true
-    },
-
-    // Create Sourcemaps for the bundle
-    devtool: 'source-map'
-};
+    }
+}

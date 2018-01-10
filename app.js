@@ -13,7 +13,6 @@ var crypto = require('crypto');
 var authentication = require('./backend/authentication');
 
 //Routers
-var index = require('./backend/routes/index');
 var users = require('./backend/routes/users');
 var register = require('./backend/routes/register');
 var login = require('./backend/routes/login');
@@ -22,8 +21,8 @@ var app = express();
 var isDevelopment = process.env.NODE_ENV !== "production";
 
 // view engine setup
-app.set('views', path.join(__dirname, 'frontend/views'));
-app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, 'frontend/views'));
+// app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -51,25 +50,12 @@ passport.use(new LocalStrategy(authentication.basicAuthStrategey));
 passport.serializeUser(authentication.serializeSession);
 passport.deserializeUser(authentication.deSerializeSession);
 
-//IF DEV setup webpack hot reloading:
-// if (isDevelopment) {
-//   var webpack = require('webpack');
-//   var webpackDevMiddleware = require('webpack-dev-middleware');
-//   var webpackHotMiddleware = require('webpack-hot-middleware');
-//   var webpackConfig = require('./webpack.dev.config.js');
-//   console.log('Webpack middleware is running: Dev mode is on.');
-//   app.use(webpackDevMiddleware(webpack(webpackConfig), {
-//     publicPath: webpackConfig.output.publicPath
-//   }));
-//   app.use(webpackHotMiddleware(webpack(webpackConfig)));
-// }
-
 // Application Routes
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', index);
-app.use('/users', users);
-app.use('/login', login);
-app.use('/register', register);
+// app.use('/', index);
+// app.use('/users', users);
+// app.use('/login', login);
+// app.use('/register', register);
 
 //********* 
 // catch 404 and forward to error handler
@@ -86,8 +72,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.sendStatus(err.status || 500);
 });
 
 module.exports = app;
