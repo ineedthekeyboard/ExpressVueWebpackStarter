@@ -16,6 +16,9 @@ router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+router.get('/getUsers', function(req, res){
+  res.json(users);
+});
 router.get('/del/:id', function(req, res) {
   var userId = req.params.id,
       currentUser = req.user;

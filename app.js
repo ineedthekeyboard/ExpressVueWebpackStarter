@@ -11,6 +11,7 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var crypto = require('crypto');
 var authentication = require('./backend/authentication');
+var history = require('connect-history-api-fallback');
 
 //Routers
 var users = require('./backend/routes/users');
@@ -41,9 +42,10 @@ app.use(session({
 //Bolt passport sessions to express sessions
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 app.use(cookieParser());
+app.use(history({
+  htmlAcceptHeaders: ['text/html', 'application/xhtml+xml']
+}));
 
 //Setup Passport authentication
 passport.use(new LocalStrategy(authentication.basicAuthStrategey));
@@ -53,7 +55,7 @@ passport.deserializeUser(authentication.deSerializeSession);
 // Application Routes
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', index);
-// app.use('/users', users);
+app.use('/api', users);
 // app.use('/login', login);
 // app.use('/register', register);
 
